@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "67ed38174325e648755cd0ed"
+  },
+  "nombre": "Carmen",
+  "email": "carlos@gmail.com",
+  "mensaje": "prueba 3",
+  "fecha": {
+    "$date": "2025-04-02T13:13:59.700Z"
+  },
+  "createdAt": {
+    "$date": "2025-04-02T13:13:59.705Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-02T13:13:59.705Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff693c2823a7caa994605e"
+  },
+  "name": "nim",
+  "email": "nim@gmail.com",
+  "message": "prueba1",
+  "date": {
+    "$date": "2025-04-16T08:24:28.830Z"
+  },
+  "createdAt": {
+    "$date": "2025-04-16T08:24:28.834Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T08:24:28.834Z"
+  },
+  "__v": 0
+}]

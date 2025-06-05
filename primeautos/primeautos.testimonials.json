@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "67ff7e44fee77c21b4c4cfb7"
+  },
+  "name": "Ana Martínez",
+  "comment": {
+    "es": "Rápidos, eficaces  y a buen precio. Lo recomiendo al 100%.",
+    "en": "Fast, efficient, and reasonably priced. I highly recommend them."
+  },
+  "createdAt": {
+    "$date": "2025-04-16T09:54:12.292Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T09:54:12.292Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff7e60fee77c21b4c4cfb9"
+  },
+  "name": "Juan López",
+  "comment": {
+    "es": "El personal es muy amable y profesional. Sin duda regresaré para el mantenimiento de mi coche.",
+    "en": "The staff is very friendly and professional. I will definitely return for my car service."
+  },
+  "createdAt": {
+    "$date": "2025-04-16T09:54:40.440Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T09:54:40.440Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff7e77fee77c21b4c4cfbb"
+  },
+  "name": "María Pérez",
+  "comment": {
+    "es": "Un servicio increíble, mi coche nunca había funcionado tan bien. ¡Gracias Prime Autos!",
+    "en": "Incredible service, my car has never run so well. Thank you Prime Autos!"
+  },
+  "createdAt": {
+    "$date": "2025-04-16T09:55:03.660Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T09:55:03.660Z"
+  },
+  "__v": 0
+}]

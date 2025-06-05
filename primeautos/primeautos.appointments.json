@@ -1,0 +1,380 @@
+[{
+  "_id": {
+    "$oid": "67efbbf17667b289c267b010"
+  },
+  "name": "lidia",
+  "email": "lidia@gmail.com",
+  "telephone": "625626262",
+  "date": {
+    "$date": "2025-04-18T00:00:00.000Z"
+  },
+  "time": "17:00",
+  "status": "Confirmada",
+  "createdAt": {
+    "$date": "2025-04-04T11:01:05.263Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-11T07:30:11.056Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67efbfa87667b289c267b01d"
+  },
+  "name": "Luis",
+  "email": "luis@gmail.com",
+  "telephone": "625626262",
+  "date": {
+    "$date": "2025-04-17T00:00:00.000Z"
+  },
+  "time": "17:00",
+  "status": "Confirmada",
+  "createdAt": {
+    "$date": "2025-04-04T11:16:56.527Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-11T08:39:30.099Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f4d4539a947e184d3c4a79"
+  },
+  "name": "maria",
+  "email": "sandrasaezibarra@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-23T00:00:00.000Z"
+  },
+  "time": "14:00",
+  "status": "Confirmada",
+  "createdAt": {
+    "$date": "2025-04-08T07:46:27.689Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-11T08:39:01.907Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f798928a34803fdd7fd246"
+  },
+  "name": "amaia",
+  "email": "sandrasaezibarra@gmail.com",
+  "telephone": "123456789",
+  "date": {
+    "$date": "2025-04-23T00:00:00.000Z"
+  },
+  "time": "11:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-10T10:08:18.931Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-10T10:08:18.931Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f79dcb8a34803fdd7fd24b"
+  },
+  "name": "jose",
+  "email": "sandrasaezibarra@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-28T00:00:00.000Z"
+  },
+  "time": "11:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-10T10:30:35.438Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-10T10:30:35.438Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f7cd918a34803fdd7fd25a"
+  },
+  "name": "marc",
+  "email": "sandrasaezibarra@gmail.com",
+  "telephone": "625626262",
+  "date": {
+    "$date": "2025-04-22T00:00:00.000Z"
+  },
+  "time": "10:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-10T13:54:25.374Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-10T13:54:25.374Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67fe63112823a7caa9945ffd"
+  },
+  "name": "lily",
+  "email": "lily@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-22T00:00:00.000Z"
+  },
+  "time": "14:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-15T13:45:53.175Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-15T13:45:53.175Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67fe63a32823a7caa9946003"
+  },
+  "name": "kat",
+  "email": "kat@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-29T00:00:00.000Z"
+  },
+  "time": "17:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-15T13:48:19.108Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-15T13:48:19.108Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67fe66752823a7caa994600c"
+  },
+  "name": "solarin",
+  "email": "solarin@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-24T00:00:00.000Z"
+  },
+  "time": "17:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-15T14:00:21.027Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-15T14:00:21.027Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff4d282823a7caa9946013"
+  },
+  "name": "alexander",
+  "email": "alexander@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-27T00:00:00.000Z"
+  },
+  "time": "11:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T06:24:40.628Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T06:24:40.628Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff4dbc2823a7caa994601a"
+  },
+  "name": "harry",
+  "email": "harry@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-21T00:00:00.000Z"
+  },
+  "time": "10:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T06:27:08.720Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T06:27:08.720Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff4e3e2823a7caa9946021"
+  },
+  "name": "alex",
+  "email": "alex@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-21T00:00:00.000Z"
+  },
+  "time": "11:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T06:29:18.735Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T06:29:18.735Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff4eb02823a7caa9946026"
+  },
+  "name": "mateo",
+  "email": "mateo@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-27T00:00:00.000Z"
+  },
+  "time": "10:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T06:31:12.099Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T06:31:12.099Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff53992823a7caa994602e"
+  },
+  "name": "saul",
+  "email": "saul@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-28T00:00:00.000Z"
+  },
+  "time": "10:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T06:52:09.856Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T06:52:09.856Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff53db2823a7caa9946036"
+  },
+  "name": "marga",
+  "email": "marga@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-29T00:00:00.000Z"
+  },
+  "time": "16:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T06:53:15.547Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T06:53:15.547Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff56d62823a7caa9946040"
+  },
+  "name": "michelle",
+  "email": "michelle@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-29T00:00:00.000Z"
+  },
+  "time": "10:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T07:05:58.229Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T07:05:58.229Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff57772823a7caa9946045"
+  },
+  "name": "platon",
+  "email": "platon@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-27T00:00:00.000Z"
+  },
+  "time": "17:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T07:08:39.476Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T07:08:39.476Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff579d2823a7caa9946050"
+  },
+  "name": "valeria",
+  "email": "valeria@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-26T00:00:00.000Z"
+  },
+  "time": "17:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T07:09:17.295Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T07:09:17.295Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff58532823a7caa9946056"
+  },
+  "name": "voltaire",
+  "email": "voltaire@gmail.com",
+  "telephone": "12356789",
+  "date": {
+    "$date": "2025-04-26T00:00:00.000Z"
+  },
+  "time": "10:00",
+  "status": "Pendiente",
+  "createdAt": {
+    "$date": "2025-04-16T07:12:19.425Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-16T07:12:19.425Z"
+  },
+  "__v": 0
+}]

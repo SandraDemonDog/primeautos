@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "67ff6e822823a7caa9946063"
+  },
+  "name": {
+    "es": "Cambio de aceite",
+    "en": "Oil change"
+  },
+  "description": {
+    "es": "Servicio completo de cambio de aceite con revisión de filtro.",
+    "en": "Full service oil change with filter check"
+  },
+  "price": "50€",
+  "vehicleType": "Automóvil",
+  "featured": true,
+  "averageRating": 3.3333333333333335,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff6ecb2823a7caa9946065"
+  },
+  "name": {
+    "es": "Revisión general",
+    "en": "General inspection"
+  },
+  "description": {
+    "es": "Revisión completa de los sistemas eléctricos y mecánicos.",
+    "en": "Complete inspection of electrical and mechanical systems."
+  },
+  "price": "80€",
+  "vehicleType": "Motocicleta",
+  "featured": true,
+  "averageRating": 3.5,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff6fc42823a7caa9946067"
+  },
+  "name": {
+    "es": "Alineación y balanceo",
+    "en": "Alignment and balance"
+  },
+  "description": {
+    "es": "Ajuste de alineación y balanceo para mayor seguridad.",
+    "en": "Alignment and balance adjustment for greater safety."
+  },
+  "price": "70€",
+  "vehicleType": "Automóvil",
+  "featured": true,
+  "averageRating": 3.5,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff702a2823a7caa9946069"
+  },
+  "name": {
+    "es": "Reparación de frenos",
+    "en": "Brake repair"
+  },
+  "description": {
+    "es": "Cambio de pastillas, discos y revisión de líquidos de freno.",
+    "en": "Changing brake pads, discs, and checking brake fluid."
+  },
+  "price": "100€",
+  "vehicleType": "Automóvil",
+  "featured": false,
+  "averageRating": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff70882823a7caa994606b"
+  },
+  "name": {
+    "es": "Inspección técnica vehicular",
+    "en": "Vehicle technical"
+  },
+  "description": {
+    "es": "Preparación para la ITV con ajustes y reparaciones necesarias.",
+    "en": "Preparation for the MOT with neccesary adjustments and repairs"
+  },
+  "price": "120€",
+  "vehicleType": "Camión",
+  "featured": true,
+  "averageRating": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff70d32823a7caa994606d"
+  },
+  "name": {
+    "es": "Reparación de suspensión",
+    "en": "Suspension repair"
+  },
+  "description": {
+    "es": "Diagnóstico y reparación de problemas en la suspensión.",
+    "en": "Diagnosis and repair of suspension problems"
+  },
+  "price": "150€",
+  "vehicleType": "Camión",
+  "featured": false,
+  "averageRating": 0,
+  "__v": 0
+}]

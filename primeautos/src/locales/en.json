@@ -1,0 +1,129 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "appointment": "Workshop Appointment",
+    "aboutUs": "About Us",
+    "contact": "Contact Us",
+    "login": "Login",
+    "profile": "Profile"
+  },
+  "footer": {
+    "legalNotice": "Legal Notice",
+    "privacyPolicy": "Privacy Policy",
+    "cookiesPolicy": "Cookies Policy",
+    "cookiesSettings": "Cookies Settings",
+    "accessibility": "Accessibility",
+    "copyright": "&copy; {{year}} Prime Autos. All rights reserved."
+  },
+  "workshop": {
+    "title": "Welcome to Prime Autos",
+    "description": "At Prime Autos, we offer the best mechanical and maintenance services for your car. With over 20 years of experience, we are the workshop you need."
+  },
+  "mainPage": {
+    "bannerDescription": "Trust us to take care of your car as if it were our own.",
+    "viewServices": "View Our Services",
+    "aboutUsTitle": "Who Are We?",
+    "featuredServicesTitle": "Featured Services",
+    "loadingServices": "Loading services...",
+    "serviceImageAlt": "Service",
+    "workshopAndTeamTitle": "Our Workshop and Team",
+    "workshopDescription": "Get to know our space and work",
+    "workshopImageAlt": "Workshop Image",
+    "testimonialsTitle": "Customer Testimonials",
+    "loadingTestimonials": "Loading testimonials...",
+    "callToActionTitle": "Make your appointment today!",
+    "callToActionDescription": "Schedule your next check-up and let us take care of your car.",
+    "callToActionButton": "Book appointment"
+  },
+  "services": {
+    "title": "Our Services",
+    "filterLabel": "Filter Services by Vehicle Type",
+    "filterDefault": "All",
+    "vehicleTypeLabel": "Vehicle Type:",
+    "vehicleTypes": {
+      "display": {
+        "car": "Car",
+        "motorcycle": "Motorcycle",
+        "truck": "Truck"
+      },
+      "model": {
+        "car": "Automóvil",
+        "motorcycle": "Motocicleta",
+        "truck": "Camión"
+      }
+    },
+    "ratingLabel": "Average Rating:",
+    "noRatings": "No ratings",
+    "commentPlaceholder": "Write a comment (optional)",
+    "commentLabel": "Comment",
+    "submitButton": "Submit Review",
+    "rateThisService": "Rate this service:",
+    "errorMessage": "There was an error submitting your review."
+  },
+  "appointment": {
+    "sectionTitle": "Book your appointment with Prime Autos!",
+    "description": "Select the available date and time to schedule your visit.",
+    "loadingTime": "Loading...",
+    "noAvailableHours": "No available hours for this day.",
+    "namePlaceholder": "Enter your name",
+    "nameLabel": "Name",
+    "emailPlaceholder": "Enter your email",
+    "emailLabel": "Email",
+    "telephonePlaceholder": "Enter your phone number",
+    "telephoneLabel": "Telephone",
+    "submitButton": "Book Appointment",
+    "errorNoDateTime": "Please select a date and time.",
+    "successMessage": "Appointment booked successfully!",
+    "errorSubmit": "There was an error scheduling your appointment. Please try again.",
+    "backToHome": "Back to Home",
+    "exploreServices": "Explore Services"
+  },
+  "aboutUs": {
+    "title": "About Us",
+    "description": "At Prime Autos, we have years of providing reliable repair and maintenance services with professionalism and passion for the automotive world. Our commitment is to ensure your car is always in optimal condition.",
+    "exploreServices": "Explore Our Services",
+    "historyTitle": "Our History",
+    "historyDescription": "Prime Autos was founded with the mission to provide reliable solutions for vehicles—from humble beginnings in 2010 to becoming a reference workshop, always committed to quality and transparency.",
+    "teamTitle": "Meet Our Team",
+    "subscribeTitle": "Stay Informed",
+    "subscribeDescription": "Subscribe to our updates to receive maintenance tips, offers and much more.",
+    "emailPlaceholder": "Your email address",
+    "emailLabel": "Email",
+    "subscribeButton": "Subscribe",
+    "philosophyTitle": "Our Philosophy and Values",
+    "philosophyDescription": "At Prime Autos, our commitment to excellence drives us. We value honesty, reliability, and quality in every service we provide. Our passion for automobiles is reflected in our attention to detail and customer satisfaction.",
+    "certificationTitle": "Certifications and Experience",
+    "certificationDescription": "Prime Autos is proud to have certified specialists with extensive experience in vehicle maintenance and repair. Our workshop is equipped with the latest technology, and our team continuously trains to provide the best possible service."
+  },
+  "contactUs": {
+    "title": "Contact Us",
+    "description": "Have questions or want to schedule an appointment? Complete the form below or visit our workshop.",
+    "messageTitle": "Send Us a Message",
+    "namePlaceholder": "Your full name",
+    "nameLabel": "Name",
+    "emailPlaceholder": "Your email address",
+    "emailLabel": "Email",
+    "messagePlaceholder": "Write your message here",
+    "messageLabel": "Message",
+    "submitButton": "Send Message",
+    "workshopButton": "Visit Our Workshop",
+    "successMessage": "Message sent successfully",
+    "errorMessage": "There was an error sending your message. Please try again.",
+    "addressTitle": "Our Address",
+    "addressSubtitle": "We are located at:",
+    "hoursTitle": "Office Hours:",
+    "hoursDetail": "Monday to Friday: 9:00 AM - 6:00 PM",
+    "hoursDetail2": "Saturday: 9:00 AM - 2:00 PM",
+    "phoneLabel": "Phone:",
+    "phoneNumber": "+34 123 456 789",
+    "emailInfoLabel": "Email:",
+    "emailInfo": "info@primeautos.com"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "These are some of the experiences shared by our customers.",
+    "loading": "Loading testimonials...",
+    "noTestimonials": "No testimonials available at this moment."
+  }
+}

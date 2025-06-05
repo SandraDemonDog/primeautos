@@ -1,0 +1,266 @@
+[{
+  "_id": {
+    "$oid": "67f517a9cf187cd13d759362"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 5,
+  "comment": "servicio fantastico",
+  "createdAt": {
+    "$date": "2025-04-08T12:33:45.803Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f517cdcf187cd13d759365"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 3,
+  "comment": "no ha estado mal",
+  "createdAt": {
+    "$date": "2025-04-08T12:34:21.777Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f517ffcf187cd13d759367"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 4,
+  "comment": "perfecto",
+  "createdAt": {
+    "$date": "2025-04-08T12:35:11.130Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f521fdcf187cd13d75936c"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 4,
+  "comment": "prueba 3",
+  "createdAt": {
+    "$date": "2025-04-08T13:17:49.986Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f5225acf187cd13d759371"
+  },
+  "serviceId": {
+    "$oid": "67ee2fb273617bfdd6ddb000"
+  },
+  "rating": 4,
+  "comment": "prueba6",
+  "createdAt": {
+    "$date": "2025-04-08T13:19:22.732Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f52540cf187cd13d75937e"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 1,
+  "comment": "prueba7",
+  "createdAt": {
+    "$date": "2025-04-08T13:31:44.226Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f52a1ccf187cd13d759387"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 4,
+  "comment": "genial",
+  "createdAt": {
+    "$date": "2025-04-08T13:52:28.923Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f62ce7e1017dfed232d507"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 4,
+  "comment": "Muy buen servicio.",
+  "createdAt": {
+    "$date": "2025-04-09T08:16:39.524Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f6341de1017dfed232d50d"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 4,
+  "comment": "prueba 8",
+  "createdAt": {
+    "$date": "2025-04-09T08:47:25.940Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f63600e1017dfed232d514"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 5,
+  "comment": "sera la definitiva",
+  "createdAt": {
+    "$date": "2025-04-09T08:55:28.779Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f63701e1017dfed232d51a"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 1,
+  "comment": "por fin",
+  "createdAt": {
+    "$date": "2025-04-09T08:59:45.428Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67f638b6e1017dfed232d520"
+  },
+  "serviceId": {
+    "$oid": "67ee2f5a73617bfdd6ddaffb"
+  },
+  "rating": 4,
+  "comment": "a ver",
+  "createdAt": {
+    "$date": "2025-04-09T09:07:02.254Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ffade3fee77c21b4c4d00a"
+  },
+  "serviceId": {
+    "$oid": "67ff6e822823a7caa9946063"
+  },
+  "rating": 4,
+  "comment": "great!",
+  "createdAt": {
+    "$date": "2025-04-16T13:17:23.850Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ffade9fee77c21b4c4d00e"
+  },
+  "serviceId": {
+    "$oid": "67ff6e822823a7caa9946063"
+  },
+  "rating": 3,
+  "comment": "",
+  "createdAt": {
+    "$date": "2025-04-16T13:17:29.826Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68009839fee77c21b4c4d012"
+  },
+  "serviceId": {
+    "$oid": "67ff6e822823a7caa9946063"
+  },
+  "rating": 3,
+  "comment": "",
+  "createdAt": {
+    "$date": "2025-04-17T05:57:13.592Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6800a0d0fee77c21b4c4d018"
+  },
+  "serviceId": {
+    "$oid": "67ff6ecb2823a7caa9946065"
+  },
+  "rating": 3,
+  "comment": "",
+  "createdAt": {
+    "$date": "2025-04-17T06:33:52.597Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6800a0e1fee77c21b4c4d01e"
+  },
+  "serviceId": {
+    "$oid": "67ff6ecb2823a7caa9946065"
+  },
+  "rating": 4,
+  "comment": "",
+  "createdAt": {
+    "$date": "2025-04-17T06:34:09.511Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6800acef943f76f3272703ad"
+  },
+  "serviceId": {
+    "$oid": "67ff6fc42823a7caa9946067"
+  },
+  "rating": 3,
+  "comment": "",
+  "createdAt": {
+    "$date": "2025-04-17T07:25:35.483Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6800acf3943f76f3272703b3"
+  },
+  "serviceId": {
+    "$oid": "67ff6fc42823a7caa9946067"
+  },
+  "rating": 4,
+  "comment": "",
+  "createdAt": {
+    "$date": "2025-04-17T07:25:39.864Z"
+  },
+  "__v": 0
+}]

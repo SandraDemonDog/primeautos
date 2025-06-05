@@ -1,0 +1,27 @@
+@import "tailwindcss/preflight";/*estilos base*/
+@import "tailwindcss/utilities";/*utilidades*/
+
+/*:root {
+    --background-light: #ffffff;
+    --background-dark: #0a0a0a;
+  }
+  
+  body {
+    background-color: var(--background-light);
+    color: #333;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  html.dark body {
+    background-color: var(--background-dark);
+    color: #fff;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit; /* Usa el color de texto actual *//*
+  }*/
+ /* @tailwind base;
+  @tailwind components;
+  @tailwind utilities;*/

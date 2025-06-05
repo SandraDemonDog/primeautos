@@ -1,0 +1,164 @@
+/*@import "tailwindcss/preflight"; /* Reinicio de estilos base */
+/*@import "tailwindcss/utilities"; /* Utilidades de Tailwind CSS */
+ 
+@import "tailwindcss";
+
+/* Variables CSS para temas claros y oscuros */
+:root {
+  --background-light: #ffffff;
+  --foreground-light: #171717;
+
+  --background-dark: #0a0a0a;
+  --foreground-dark: #ededed;
+}
+
+/* Estilos para el modo claro */
+body {
+  background-color: var(--background-light);
+  color: var(--foreground-light);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos para el modo oscuro */
+html.dark body {
+  background-color: var(--background-dark);
+  color: var(--foreground-dark);
+}
+
+/* Estilo para los enlaces */
+a {
+  text-decoration: none;
+  color: inherit; /* Usa el color del texto actual */
+  transition: color 0.2s ease-in-out;
+}
+
+/* Hover para los enlaces */
+a:hover {
+  color: rgba(146, 50, 50, 0.322); /* Cambia el color de los enlaces al pasar el cursor */
+}
+
+/* Botones de acción */
+.btn {
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Pequeño efecto de zoom */
+}
+
+.btn-outline-primary {
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #e0f2ff; /* Fondo claro al hacer hover */
+}
+
+/* Spinner personalizado */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid transparent;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tarjetas para horas disponibles */
+.card {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px); /* Levanta la tarjeta al hacer hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezados centrados */
+h2,
+h4 {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Alertas de confirmación */
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: opacity 0.2s ease;
+}
+
+.alert-success {
+  background-color: #e6f9e6;
+  color: #155724;
+  border: 1px solid #c3e6c3;
+}
+
+/* Ajuste para columnas */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.col-md-6 {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Botón flotante */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Ventana del chat */
+.chatbox {
+  position: fixed;
+  bottom: 80px; /* Espaciado para que no se superponga con el botón */
+  right: 20px;
+  width: 320px;
+  max-height: 400px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
