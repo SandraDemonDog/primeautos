@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,52 +6,36 @@ import TestimonialForm from "./testimonialsForm";
 import AppointmentsForm from "./appointmentsForm";
 import AdminTranslationsPanel from "./adminTranslationPanel";
 import AdminMessagesPanel from "./adminMessages";
+import UsersPanel from "./userPanel";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-import UsersPanel from "./userPanel";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function AdminPage() {
-  const [currentTab, setCurrentTab] = useState<"appointments" | "services" | "testimonials" | "messages" | "translations" | "users">("appointments");
-  const [userEmail, setUserEmail] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentTab, setCurrentTab] = useState<
+    "appointments" | "services" | "testimonials" | "messages" | "translations" | "users"
+  >("appointments");
 
   const router = useRouter();
+  const { user, logout, loading } = useAuth();
 
   useEffect(() => {
-    const fetchAdminSession = async () => {
-      try {
-        const res = await axios.get("/api/verifyAdmin", { withCredentials: true });
+    if (!loading && (!user || user.role !== "admin")) {
+      router.push("/login");
+    }
+  }, [user, loading, router]);
 
-        if (res.data?.success) {
-          setUserEmail(res.data.decoded.email || "Administrador");
-          setIsAuthenticated(true);
-        } else {
-          router.push("/login");
-        }
-      } catch (err) {
-        console.error("Error al verificar sesión del admin:", err);
-        router.push("/login");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAdminSession();
-  }, [router]);
-
-  if (loading) {
-    return <div className="text-center py-8 text-gray-700">Verificando acceso de administrador...</div>;
-  }
-
-  if (!isAuthenticated) {
-    return null;
+  if (loading || !user || user.role !== "admin") {
+    return (
+      <div className="text-center py-8 text-gray-700">
+        Verificando acceso de administrador...
+      </div>
+    );
   }
 
   const handleLogout = async () => {
     try {
-      await axios.post("/api/logout", {}, { withCredentials: true });
+      await logout();
       router.push("/login");
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
@@ -61,11 +44,11 @@ export default function AdminPage() {
 
   return (
     <div className="flex max-w-7xl mx-auto bg-white transition-all h-screen">
-      {/* Panel lateral ajustado */}
+      {/* Panel lateral */}
       <aside className="w-1/6 bg-gray-200 p-4 flex flex-col justify-between">
         <div>
           <h2 className="text-base font-semibold mb-2">Admin</h2>
-          <p className="text-xs text-gray-700 mb-4 break-words">{userEmail}</p>
+          <p className="text-xs text-gray-700 mb-4 break-words">{user.email}</p>
 
           <ul className="space-y-2 text-sm">
             {[
@@ -102,9 +85,8 @@ export default function AdminPage() {
         </div>
       </aside>
 
-      <main className="w-5/6 p-6 overflow-y-auto">
-        <h1 className="text-2xl font-bold text-center mb-6">Panel de Administración</h1>
-
+      {/* Panel principal */}
+      <main className="flex-1 p-6 overflow-y-auto">
         {currentTab === "appointments" && <AppointmentsForm />}
         {currentTab === "services" && <ServicesForm />}
         {currentTab === "testimonials" && <TestimonialForm />}

@@ -1,6 +1,7 @@
-
 "use client";
+
 import React, { createContext, ReactNode, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export interface IUser {
   userId: string;
@@ -14,7 +15,7 @@ interface IAuthContext {
   loading: boolean;
   getAccessToken: () => Promise<string | null>;
   login: (accessToken: string) => void;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 export const AuthContext = createContext<IAuthContext | undefined>(undefined);
@@ -52,6 +53,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
 
   const refreshAccessToken = async (): Promise<string | null> => {
     try {
@@ -76,12 +78,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         return data.accessToken;
       } else {
         console.warn("⚠️ No se pudo refrescar el token o el token es inválido.");
-        logout();
+        await logout();
         return null;
       }
     } catch (error) {
       console.error("❌ Error al refrescar el token:", error);
-      logout();
+      await logout();
       return null;
     }
   };
@@ -105,10 +107,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(decoded);
   };
 
-  const logout = (): void => {
+  const logout = async (): Promise<void> => {
     console.log("🚪 Cerrando sesión...");
+    try {
+      await fetch("/api/logout", { method: "POST" }); // ✅ Elimina refreshToken del servidor
+    } catch (err) {
+      console.error("❌ Error al llamar a /api/logout", err);
+    }
     setAccessToken(null);
     setUser(null);
+    router.refresh(); // ✅ Forzar actualización de UI
   };
 
   useEffect(() => {
@@ -130,7 +138,3 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     </AuthContext.Provider>
   );
 };
-
-
-
-  
