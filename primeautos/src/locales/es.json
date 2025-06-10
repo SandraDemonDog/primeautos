@@ -8,21 +8,18 @@
     "login": "Iniciar sesión",
     "profile": "Perfil"
   },
-
   "footer": {
-      "legalNotice": "Aviso legal",
-      "privacyPolicy": "Política de privacidad",
-      "cookiesPolicy": "Política de cookies",
-      "cookiesSettings": "Configuración de cookies",
-      "accessibility": "Accesibilidad",
-      "copyright": "&copy; {{year}} Prime Autos. Todos los derechos reservados."
+    "legalNotice": "Aviso legal",
+    "privacyPolicy": "Política de privacidad",
+    "cookiesPolicy": "Política de cookies",
+    "cookiesSettings": "Configuración de cookies",
+    "accessibility": "Accesibilidad",
+    "copyright": "&copy; {{year}} Prime Autos. Todos los derechos reservados."
   },
-
   "workshop": {
-      "title": "Bienvenido a Prime Autos",
-      "description": "En Prime Autos, ofrecemos los mejores servicios de mecánica y mantenimiento para tu coche. Con más de 20 años de experiencia, somos el taller que necesitas."
+    "title": "Bienvenido a Prime Autos",
+    "description": "En Prime Autos, ofrecemos los mejores servicios de mecánica y mantenimiento para tu coche. Con más de 20 años de experiencia, somos el taller que necesitas."
   },
-
   "mainPage": {
     "bannerDescription": "Confía en nosotros para cuidar de tu coche como si fuera nuestro.",
     "viewServices": "Ver Nuestros Servicios",
@@ -39,7 +36,6 @@
     "callToActionDescription": "Agenda tu próxima revisión y déjanos encargarnos de tu coche.",
     "callToActionButton": "Reservar cita"
   },
-  
   "services": {
     "title": "Nuestros Servicios",
     "filterLabel": "Filtrar Servicios por Tipo de Vehículo",
@@ -65,7 +61,6 @@
     "rateThisService": "Califica este servicio:",
     "errorMessage": "Hubo un error al enviar tu valoración."
   },
-  
   "appointment": {
     "sectionTitle": "¡Reserva tu cita con Prime Autos!",
     "description": "Selecciona la fecha y hora disponible para programar tu visita.",
@@ -84,7 +79,6 @@
     "backToHome": "Volver a Inicio",
     "exploreServices": "Explorar Servicios"
   },
-
   "aboutUs": {
     "title": "Sobre Nosotros",
     "description": "En Prime Autos, llevamos años ofreciendo servicios de reparación y mantenimiento con profesionalismo y pasión por el mundo del motor. Nuestro compromiso es garantizar que tu coche esté siempre en las mejores condiciones.",
@@ -101,9 +95,7 @@
     "philosophyDescription": "En Prime Autos, nuestro compromiso con la excelencia nos impulsa. Valoramos la honestidad, la confiabilidad y la calidad en cada servicio que ofrecemos. Nuestra pasión por los automóviles se refleja en nuestra atención al detalle y la satisfacción del cliente.",
     "certificationTitle": "Certificaciones y Experiencia",
     "certificationDescription": "Prime Autos se enorgullece de contar con especialistas certificados con amplia experiencia en mantenimiento y reparación de vehículos. Nuestro taller está equipado con tecnología de última generación, y nuestro equipo se capacita continuamente para brindar el mejor servicio posible."
-  
   },
-
   "contactUs": {
     "title": "Contáctanos",
     "description": "¿Tienes preguntas o necesitas agendar una cita? Completa el formulario a continuación o visita nuestro taller.",
@@ -128,13 +120,77 @@
     "emailInfoLabel": "Correo Electrónico:",
     "emailInfo": "info@primeautos.com"
   },
-
   "testimonials": {
     "title": "Lo Que Dicen Nuestros Clientes",
     "subtitle": "Estas son algunas de las experiencias compartidas por nuestros clientes.",
     "loading": "Cargando testimonios...",
     "noTestimonials": "No hay testimonios disponibles en este momento."
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "emailLabel": "Correo Electrónico",
+    "emailPlaceholder": "ejemplo@gmail.com",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "********",
+    "submitButton": "Iniciar sesión",
+    "loading": "Iniciando sesión...",
+    "errorAuth": "Error de autenticación",
+    "errorLogin": "Credenciales incorrectas",
+    "errorToken": "No se recibió el token.",
+    "errorDecoding": "Error al decodificar el token.",
+    "registerPrompt": "¿No tienes cuenta?",
+    "registerLink": "Regístrate",
+    "authTitle": "Error Autenticación",
+    "authError": "Debes autenticarte para acceder a esta página."
+  },
+  "register": {
+    "title": "Registrarse",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Nombre completo",
+    "emailLabel": "Correo Electrónico",
+    "emailPlaceholder": "ejemplo@gmail.com",
+    "passwordLabel": "Contraseña",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "submitButton": "Registrarse",
+    "loading": "Registrando...",
+    "errorPasswordMatch": "Las contraseñas no coinciden",
+    "successMessage": "Registro exitoso. Redirigiendo a login...",
+    "serverError": "Error interno del servidor",
+    "defaultError": "Error en el registro"
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "emailLabel": "Correo Electrónico",
+    "newPasswordLabel": "Nueva Contraseña (opcional)",
+    "saveChanges": "Guardar Cambios",
+    "deleteAccount": "Eliminar Cuenta",
+    "logout": "Cerrar Sesión",
+    "myAppointments": "Mis Citas",
+    "date": "Fecha",
+    "time": "Hora",
+    "status": "Estado",
+    "action": "Acción",
+    "delete": "Eliminar",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "page": "Página",
+    "of": "de",
+    "loadingAppointments": "Cargando citas...",
+    "noAppointments": "No tienes citas programadas.",
+    "userInfoError": "No se pudo recuperar la información del usuario.",
+    "sessionError": "No se pudo obtener la sesión del usuario.",
+    "appointmentsFetchError": "No se pudieron obtener las citas.",
+    "updateSuccess": "✅ Datos actualizados correctamente.",
+    "updateFail": "⚠️ No se pudo actualizar.",
+    "updateError": "❌ Error al actualizar.",
+    "deleteConfirm": "¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible.",
+    "deleteSuccess": "🗑️ Cuenta eliminada correctamente.",
+    "deleteFail": "⚠️ No se pudo eliminar la cuenta.",
+    "deleteError": "❌ Error al eliminar cuenta.",
+    "deleteAppointmentConfirm": "¿Deseas cancelar esta cita?",
+    "deleteAppointmentSuccess": "🗑️ Cita eliminada correctamente.",
+    "deleteAppointmentFail": "⚠️ No se pudo eliminar la cita.",
+    "deleteAppointmentError": "❌ Error al eliminar cita.",
+    "logoutError": "❌ Error al cerrar sesión."
   }
-
 }
-  

@@ -35,10 +35,16 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 }
 
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
-
+export async function DELETE(req: Request) {
   await connectDB();
+
+  // ✅ Extraer ID correctamente desde la URL
+  const url = new URL(req.url);
+  const id = url.pathname.split("/").pop(); // Obtiene el último segmento de la URL
+
+  if (!id) {
+    return NextResponse.json({ message: "ID no proporcionado" }, { status: 400 });
+  }
 
   try {
     const result = await Testimonial.findByIdAndDelete(id);
@@ -49,6 +55,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
 
     return NextResponse.json({ message: "Testimonio eliminado correctamente" }, { status: 200 });
   } catch (error) {
+    console.error("Error al eliminar testimonio:", error);
     return NextResponse.json({ message: "Error al eliminar el testimonio" }, { status: 500 });
   }
 }

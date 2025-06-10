@@ -1,4 +1,4 @@
-module.exports = {
+/*module.exports = {
     locales: ['en', 'es'],
     output: 'src/locales/$LOCALE.json',
     options: {
@@ -14,4 +14,4 @@ module.exports = {
       // Otras opciones según tus necesidades
     },
   };
-  
+  */

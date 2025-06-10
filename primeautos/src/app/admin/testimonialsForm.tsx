@@ -34,17 +34,18 @@ export default function TestimonialsForm() {
 
     
 
-    useEffect(() => {
-        const fetchTestimonials = async () => {
-            try {
-                const response = await axios.get("/api/testimonials");
-                setTestimonials(response.data.data);
-            } catch (err) {
-                setError("Error al cargar los testimonios.");
-            }
-        };
-        fetchTestimonials();
-    }, []);
+ const fetchTestimonials = async () => {
+    try {
+      const response = await axios.get("/api/testimonials");
+      setTestimonials(response.data.data); // ✅ Actualizar correctamente el estado con los datos de la API
+    } catch (err) {
+      setError("Error al cargar los testimonios.");
+    }
+  };
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
 
 
     const filteredTestimonials = testimonials.filter(
@@ -100,11 +101,24 @@ export default function TestimonialsForm() {
     const handleDeleteTestimonial = async (id: string) => {
         try {
         await axios.delete(`/api/testimonials/${id}`);
-        setTestimonials((prev) => prev.filter((t) => t._id !== id));
-        } catch (err) {
-        setError("Error al eliminar el testimonio.");
-        }
-    };
+    const updated = testimonials.filter((t) => t._id !== id);
+    setTestimonials(updated);
+
+    const totalItemsAfterDeletion = updated.filter(
+      (t) =>
+        t.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+        t.comment.es.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+        t.comment.en.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+    ).length;
+
+    const newTotalPages = Math.ceil(totalItemsAfterDeletion / itemsPerPage);
+    if (currentPage > newTotalPages) {
+      setCurrentPage(newTotalPages); // Corrige si te pasaste de página
+    }
+  } catch (err) {
+    setError("Error al eliminar el testimonio.");
+  }
+};
 
     const handleEditTestimonial = (testimonial: Testimonial) => {
         setEditingTestimonial(testimonial);
