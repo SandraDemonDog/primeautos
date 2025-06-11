@@ -26,19 +26,21 @@ export default function AdminMessagesPanel() {
 
   
   useEffect(() => {
-    const fetchMessages = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get("/api/sendContactForm");
-        setMessages(response.data.data);
-      } catch (err) {
-        setError("Error al cargar los mensajes.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMessages();
-  }, []);
+  const fetchMessages = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("/api/sendContactForm");
+      setMessages(response.data.data);
+    } catch (err) {
+      console.error("Error al cargar los mensajes:", err);
+      setError("Error al cargar los mensajes.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchMessages();
+}, []);
+
 
   const filteredMessages = messages.filter(
     (msg) =>
@@ -66,8 +68,10 @@ export default function AdminMessagesPanel() {
       await axios.delete(`/api/sendContactForm/${id}`);
       setMessages((prev) => prev.filter((msg) => msg._id !== id));
     } catch (err) {
+      console.error("Error al eliminar el mensaje:", err);
       setError("Error al eliminar el mensaje.");
     }
+
   };
 
   const goToPreviousPage = () => {

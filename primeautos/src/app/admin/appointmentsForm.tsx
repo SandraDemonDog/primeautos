@@ -211,6 +211,23 @@ export default function AppointmentsForm() {
         </div>
       )}
 
+      {error && (
+        <div className="bg-red-100 text-red-700 p-3 mb-4 rounded shadow">
+          {error}
+        </div>
+      )}
+
+      <Input
+        type="text"
+        name="search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Buscar por nombre, correo o teléfono"
+        label="Buscar"
+        className="w-full mb-4"
+      />
+
+
       <form onSubmit={handleAppointmentSubmit} className="space-y-4 mb-6">
         <Input
           type="text"

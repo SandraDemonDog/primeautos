@@ -122,7 +122,7 @@ export default function AdminTranslationsPanel() {
             <p className="text-gray-600">No hay claves parcialmente traducidas.</p>
           ) : (
             Object.entries(missingKeys.parcialmente_traducidas)
-              .filter(([_, langs]) => !langs.es || !langs.en)
+              .filter(([, langs]) => !langs.es || !langs.en)
               .map(([key, langs]) => (
                 <div key={key} className="mb-4">
                   <label className="block font-bold mb-1">{key}</label>

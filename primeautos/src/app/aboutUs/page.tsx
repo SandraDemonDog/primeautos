@@ -11,7 +11,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export default function AboutUs() {
 
   const t = useTranslations();
-  const { locale } = useLanguage(); 
+  useLanguage(); 
 
   const aboutUsTranslations = {
     title: t.aboutUs.title,
