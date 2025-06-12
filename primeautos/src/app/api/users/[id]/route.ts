@@ -1,10 +1,15 @@
-
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/utils/authHelpers";
 import { connectDB } from "@/utils/mongodb";
 import User from "@/modelo/User";
 import bcrypt from "bcryptjs";
 
+interface UserUpdateData {
+  name?: string;
+  email?: string;
+  role?: string;
+  password?: string;
+}
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   await connectDB();
@@ -16,25 +21,25 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }
     return NextResponse.json({ data: user });
   } catch (error) {
+    console.error("Error al obtener el usuario:", error);
     return NextResponse.json({ message: "Error al obtener el usuario." }, { status: 500 });
   }
 }
-
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   await connectDB();
   try {
     requireAdmin(req);
-    const updates = await req.json();
+    const updates: UserUpdateData = await req.json();
 
- const allowedFields = ["name", "email", "role"];
-    const updateData: any = {};
-
+    const allowedFields: (keyof UserUpdateData)[] = ["name", "email", "role"];
+    const updateData: Partial<UserUpdateData> = {};
 
     for (const field of allowedFields) {
-      if (updates[field]) updateData[field] = updates[field];
+      if (updates[field]) {
+        updateData[field] = updates[field];
+      }
     }
-
 
     if (updates.password) {
       if (updates.password.length < 6) {
@@ -45,7 +50,9 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       updateData.password = hashedPassword;
     }
 
-    const updatedUser = await User.findByIdAndUpdate(params.id, updateData, { new: true }).select("-password");
+    const updatedUser = await User.findByIdAndUpdate(params.id, updateData, {
+      new: true,
+    }).select("-password");
 
     if (!updatedUser) {
       return NextResponse.json({ error: "Usuario no encontrado." }, { status: 404 });
@@ -53,8 +60,15 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
     return NextResponse.json({ data: updatedUser });
 
-  } catch (error: any) {
-    if (error.code === 11000 && error.keyPattern?.email) {
+  } catch (error) {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "code" in error &&
+      "keyPattern" in error &&
+      (error as { code: number; keyPattern?: Record<string, unknown> }).code === 11000 &&
+      (error as { keyPattern?: Record<string, unknown> }).keyPattern?.email
+    ) {
       return NextResponse.json({ error: "Este correo ya está registrado." }, { status: 400 });
     }
 
@@ -62,7 +76,6 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     return NextResponse.json({ error: "Error interno al actualizar usuario" }, { status: 500 });
   }
 }
-
 
 export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
   await connectDB();
@@ -76,6 +89,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
 
     return NextResponse.json({ message: "Usuario eliminado correctamente." });
   } catch (error) {
+    console.error("Error al eliminar el usuario:", error);
     return NextResponse.json({ message: "Error al eliminar el usuario." }, { status: 500 });
   }
 }

@@ -1,54 +1,9 @@
-
 import { connectDB } from "@/utils/mongodb";
 import Appointment from "@/modelo/Appointment";
 import { NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
 import sendEmail from "../emailService/route";
 
-
-const verifyAdmin = async (req: NextRequest): Promise<true | NextResponse> => {
-  try {
-
-    const token = req.cookies.get("refreshToken")?.value;
-
-    if (!token) {
-      return NextResponse.json(
-        { success: false, message: "No autorizado: Token no proporcionado." },
-        { status: 401 }
-      );
-    }
-
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      console.error("JWT_SECRET no está definido en las variables de entorno.");
-      return NextResponse.json(
-        { success: false, message: "Error interno del servidor." },
-        { status: 500 }
-      );
-    }
-
-    const decoded = jwt.verify(token, secret) as jwt.JwtPayload;
-
-    if (decoded.role !== "admin") {
-      return NextResponse.json(
-        { success: false, message: "No autorizado: Solo administradores." },
-        { status: 403 }
-      );
-    }
-
-    return true;
-  } catch (error) {
-    console.error("Error al verificar el token:", error);
-    return NextResponse.json(
-      { success: false, message: "No autorizado: Token inválido o expirado." },
-      { status: 401 }
-    );
-  }
-};
-
-
 export const GET = async (req: NextRequest) => {
-  
   try {
     await connectDB();
     const { searchParams } = new URL(req.url!);
@@ -66,8 +21,6 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const POST = async (req: NextRequest) => {
-
-
   try {
     await connectDB();
     const body = await req.json();
@@ -99,4 +52,3 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ success: false, message: "Error interno del servidor." }, { status: 500 });
   }
 };
-

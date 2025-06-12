@@ -1,9 +1,13 @@
-// app/api/resetPassword/route.ts
+
 import { NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { connectDB } from "@/utils/mongodb";
 import User from "@/modelo/User";
 import bcrypt from "bcryptjs";
+
+interface TokenPayload extends JwtPayload {
+  userId?: string;
+}
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -20,10 +24,10 @@ export const POST = async (req: NextRequest) => {
 
     if (!process.env.JWT_SECRET) throw new Error("JWT_SECRET no definido");
 
-    let payload: any;
+    let payload: TokenPayload;
     try {
-      payload = jwt.verify(token, process.env.JWT_SECRET);
-    } catch (error) {
+      payload = jwt.verify(token, process.env.JWT_SECRET) as TokenPayload;
+    } catch {
       return NextResponse.json(
         { success: false, message: "Token inválido o expirado." },
         { status: 400 }
@@ -31,6 +35,13 @@ export const POST = async (req: NextRequest) => {
     }
 
     const userId = payload.userId;
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, message: "Token inválido: falta userId." },
+        { status: 400 }
+      );
+    }
+
     const user = await User.findById(userId);
     if (!user) {
       return NextResponse.json(

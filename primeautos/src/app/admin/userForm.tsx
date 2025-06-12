@@ -71,7 +71,7 @@ export default function UserForm({ user, onSuccess }: Props) {
       }
 
       onSuccess();
-    } catch (err) {
+    } catch {
       const msg = "Error al guardar el usuario.";
       setError(msg);
     }

@@ -33,7 +33,7 @@ interface ServicesClientProps {
   services: Service[];
 }
 
-// Componente para cada tarjeta de servicio optimizado con React.memo
+
 const ServiceCard = React.memo(
   ({
     service,
@@ -219,6 +219,8 @@ export function ServicesClient({ services }: ServicesClientProps) {
     setComment((prev) => ({ ...prev, [serviceId]: value }));
   }, []);
 
+  ServiceCard.displayName = "ServiceCard";
+
   const handleSubmit = useCallback(async (serviceId: string) => {
     if (!rating[serviceId] || rating[serviceId] < 1) {
       alert(
@@ -245,7 +247,6 @@ export function ServicesClient({ services }: ServicesClientProps) {
         );
         setRating((prev) => ({ ...prev, [serviceId]: 0 }));
         setComment((prev) => ({ ...prev, [serviceId]: "" }));
-        const updatedServiceResponse = await axios.get(`/api/services/${serviceId}`);
 
       } else {
         alert(
@@ -255,7 +256,7 @@ export function ServicesClient({ services }: ServicesClientProps) {
               : "Error al enviar la valoración.")
         );
       }
-    } catch (error) {
+    } catch {
       alert(
         locale === "en"
           ? "Error submitting your rating."

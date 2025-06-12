@@ -1,13 +1,10 @@
 import Navbar from "@/components/Navbar";
-import LanguageSwitcher from "@/components/LanguageSwitcher"; // Componente para cambiar idioma
 import { Roboto } from "next/font/google";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import './globals.css';
 import ChatbotWidget from "@/components/ChatBoxWidget";
 import { AuthProvider } from "@/utils/auth";
-//import '../utils/i18n';
-//import '../styles/tailwind.css';
 
 
 export const metadata = {

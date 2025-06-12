@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 export function extractUsedTranslationKeys(dir: string): string[] {
-  let keys: string[] = [];
+  const keys: string[] = [];
 
   const traverse = (currentPath: string) => {
     const files = fs.readdirSync(currentPath);

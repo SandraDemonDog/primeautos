@@ -25,5 +25,5 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   );
 };
 
-// Hook personalizado para usar el contexto
+
 export const useLanguage = () => useContext(LanguageContext);

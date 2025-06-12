@@ -19,7 +19,7 @@ export async function DELETE(req: NextRequest) {
 
     return response;
   } catch (error) {
-    console.error("❌ Error al eliminar usuario:", error);
+    console.error(" Error al eliminar usuario:", error);
     return NextResponse.json({ success: false, message: "Error del servidor" }, { status: 500 });
   }
 }

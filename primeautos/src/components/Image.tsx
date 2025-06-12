@@ -1,12 +1,13 @@
 import React from "react";
+import NextImage from "next/image";
 
 interface ImageProps {
-  src: string; 
-  alt: string; 
-  width?: number; 
-  height?: number; 
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
   className?: string;
-  onError?: () => void; 
+  onError?: () => void;
 }
 
 const ImageComponent: React.FC<ImageProps> = ({
@@ -18,13 +19,13 @@ const ImageComponent: React.FC<ImageProps> = ({
   onError,
 }) => {
   return (
-    <img
+    <NextImage
       src={src}
       alt={alt}
-      width={width}
-      height={height}
-      className={`rounded-lg shadow-md ${className}`} 
-      onError={onError} 
+      width={width || 400} 
+      height={height || 300}
+      className={`rounded-lg shadow-md ${className}`}
+      onError={onError}
     />
   );
 };

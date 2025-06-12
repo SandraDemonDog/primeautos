@@ -17,68 +17,63 @@ interface Appointment {
 }
 
 export default function AppointmentsForm() {
-    const [appointments, setAppointments] = useState<Appointment[]>([]); 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
-    const [successMessage, setSuccessMessage] = useState<string>("");
+  const [appointments, setAppointments] = useState<Appointment[]>([]); 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
-    const [appointmentForm, setAppointmentForm] = useState<Appointment>({
-        name: "",
-        email: "",
-        telephone: "",
-        date: "",
-        time: "",
-        status: "Pendiente",
-    });
+  const [appointmentForm, setAppointmentForm] = useState<Appointment>({
+    name: "",
+    email: "",
+    telephone: "",
+    date: "",
+    time: "",
+    status: "Pendiente",
+  });
 
-    const [editingAppointment, setEditingAppointment] = useState<Appointment | null>(null);
+  const [editingAppointment, setEditingAppointment] = useState<Appointment | null>(null);
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
-    const allHours = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"];
+  const allHours = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"];
 
-
-    useEffect(() => {
-
-        const fetchAppointments = async () => {
-            try {
-                const response = await axios.get("/api/appointments");
-                setAppointments(response.data.data);
-            } catch (err) {
-                setError("Error al cargar las citas.");
-            }
-        };
-
-        fetchAppointments();
-    }, []);
-
-    const filteredAppointments = appointments.filter(
-      (appointment) =>
-        appointment.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-        appointment.email.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-        appointment.telephone.includes(debouncedSearchTerm)
-    );
-
-    const totalPages = Math.ceil(filteredAppointments.length / itemsPerPage);
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentAppointments = filteredAppointments.slice(indexOfFirstItem, indexOfLastItem);
-
-    const goToPreviousPage = () => {
-      setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axios.get("/api/appointments");
+        setAppointments(response.data.data);
+      } catch {
+        setError("Error al cargar las citas.");
+      }
     };
+    fetchAppointments();
+  }, []);
 
-    const goToNextPage = () => {
-      setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
-    };
+  const filteredAppointments = appointments.filter(
+    (appointment) =>
+      appointment.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+      appointment.email.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+      appointment.telephone.includes(debouncedSearchTerm)
+  );
 
+  const totalPages = Math.ceil(filteredAppointments.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentAppointments = filteredAppointments.slice(indexOfFirstItem, indexOfLastItem);
+
+  const goToPreviousPage = () => {
+    setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
+  };
 
   const [timeBusy, setTimeBusy] = useState<string[]>([]);
   const [loadingTimeBusy, setLoadingTimeBusy] = useState(false);
-
 
   useEffect(() => {
     if (!appointmentForm.date) {
@@ -90,10 +85,10 @@ export default function AppointmentsForm() {
         setLoadingTimeBusy(true);
         const response = await axios.get(`/api/appointments?date=${appointmentForm.date}`);
         const busyTimes: string[] = response.data.data
-          .filter((a: Appointment) => !editingAppointment || a._id !== editingAppointment._id) // excluir cita editada
+          .filter((a: Appointment) => !editingAppointment || a._id !== editingAppointment._id)
           .map((a: Appointment) => a.time);
         setTimeBusy(busyTimes);
-      } catch (error) {
+      } catch {
         setTimeBusy([]);
       } finally {
         setLoadingTimeBusy(false);
@@ -146,7 +141,7 @@ export default function AppointmentsForm() {
 
       setTimeout(() => setSuccessMessage(""), 4000);
 
-    } catch (err) {
+    } catch {
       setError("Error al procesar la cita.");
     } finally {
       setLoading(false);
@@ -163,22 +158,21 @@ export default function AppointmentsForm() {
           appointment._id === id ? { ...appointment, status: response.data.data.status } : appointment
         )
       ); 
-    } catch (err) {
-      if (err instanceof Error) {
-        console.error("Error al confirmar la cita:", err.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Error al confirmar la cita:", error.message);
       } else {
-        console.error("Error desconocido:", err);
+        console.error("Error desconocido:", error);
       }
       setError("Error al confirmar la cita.");
     }
   };
-  
 
   const handleDeleteAppointment = async (id: string) => {
     try {
       await axios.delete(`/api/appointments/${id}`);
       setAppointments(appointments.filter((a) => a._id !== id));
-    } catch (err) {
+    } catch {
       setError("Error al eliminar la cita.");
     }
   };
@@ -195,13 +189,11 @@ export default function AppointmentsForm() {
     });
   };
 
-    useEffect(() => {
+  useEffect(() => {
     setCurrentPage(1);
   }, [debouncedSearchTerm]);
 
-
   return (
-
     <div className="bg-white p-6 rounded-md shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Citas</h2>
 
@@ -226,7 +218,6 @@ export default function AppointmentsForm() {
         label="Buscar"
         className="w-full mb-4"
       />
-
 
       <form onSubmit={handleAppointmentSubmit} className="space-y-4 mb-6">
         <Input

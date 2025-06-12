@@ -1,14 +1,19 @@
+type NestedObject = {
+  [key: string]: unknown | NestedObject;
+};
 
-export function setNestedValue(obj: any, path: string, value: string) {
+export function setNestedValue(obj: NestedObject, path: string, value: unknown): void {
   const keys = path.split(".");
-  let current = obj;
+  let current: NestedObject = obj;
 
   keys.forEach((key, index) => {
     if (index === keys.length - 1) {
-      current[key] = value;
+      (current as NestedObject)[key] = value;
     } else {
-      current[key] = current[key] || {};
-      current = current[key];
+      if (typeof current[key] !== "object" || current[key] === null) {
+        current[key] = {};
+      }
+      current = current[key] as NestedObject;
     }
   });
 }

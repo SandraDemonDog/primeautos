@@ -1,9 +1,7 @@
-
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { serialize } from 'cookie';
 
-export const POST = async (req: NextRequest) => {
-  
+export const POST = async () => {
   const expiredCookie = serialize('refreshToken', '', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
@@ -11,7 +9,6 @@ export const POST = async (req: NextRequest) => {
     path: '/',
     maxAge: -1, 
   });
-
 
   return NextResponse.json(
     { success: true, message: 'Sesión cerrada exitosamente.' },

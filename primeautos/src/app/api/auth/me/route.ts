@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getUserFromToken } from "@/utils/authHelpers";
 import { connectDB } from "@/utils/mongodb";
 import User from "@/modelo/User";
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
     await connectDB();
 
-    const userFromToken = getUserFromToken(req as any); 
+    const userFromToken = getUserFromToken(req);
 
     if (!userFromToken) {
       return NextResponse.json({ error: "No autenticado" }, { status: 401 });

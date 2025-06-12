@@ -40,6 +40,7 @@ export async function GET(req: NextRequest) {
       }
     });
   } catch (error) {
+    console.error("Error al leer los archvos de traducción", error);
     return NextResponse.json(
       { missing: { error: "Error al leer los archivos de traducción" } },
       { status: 500 }

@@ -16,7 +16,7 @@ export const GET = async (req: NextRequest) => {
 
     const secret = process.env.JWT_SECRET;
     if (!secret) {
-      console.error("❌ JWT_SECRET no está definido");
+      console.error(" JWT_SECRET no está definido");
       return NextResponse.json(
         { success: false, message: "Error interno del servidor" },
         { status: 500 }
@@ -38,7 +38,7 @@ export const GET = async (req: NextRequest) => {
       { status: 200 }
     );
   } catch (error) {
-    console.error("❌ Error al verificar el token:", error);
+    console.error(" Error al verificar el token:", error);
     return NextResponse.json(
       { success: false, message: "Token inválido o expirado" },
       { status: 401 }

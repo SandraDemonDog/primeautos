@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useContext } from "react";
@@ -7,14 +6,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AuthContext } from "@/utils/auth"; 
 
-
 interface JwtPayload {
   userId: string;
   email: string;
   role: "admin" | "usuario";
   exp: number;
 }
-
 
 const decodeJWT = (token: string): JwtPayload | null => {
   try {
@@ -31,6 +28,11 @@ const LoginPage = () => {
   const router = useRouter();
   const auth = useContext(AuthContext);
 
+  // Hooks siempre deben declararse en el mismo orden y sin condiciones
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   if (!auth) {
     return (
@@ -43,11 +45,7 @@ const LoginPage = () => {
     );
   }
 
-  const { login } = auth; 
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const { login } = auth;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,21 +65,20 @@ const LoginPage = () => {
         return;
       }
 
-    const token = response.data.accessToken;
+      const token = response.data.accessToken;
 
-    if (!token) {
-      setError("Error: no se recibió el token.");
-      setLoading(false);
-      return;
-    }
+      if (!token) {
+        setError("Error: no se recibió el token.");
+        setLoading(false);
+        return;
+      }
 
-    const decoded = decodeJWT(token);
-    if (!decoded || !decoded.role) {
-      setError("Error al decodificar el token.");
-      setLoading(false);
-      return;
-    }
-
+      const decoded = decodeJWT(token);
+      if (!decoded || !decoded.role) {
+        setError("Error al decodificar el token.");
+        setLoading(false);
+        return;
+      }
 
       login(response.data.accessToken);
 
@@ -146,5 +143,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-

@@ -4,6 +4,12 @@ import { connectDB } from "@/utils/mongodb";
 import User from "@/modelo/User";
 import bcrypt from "bcryptjs";
 
+interface UserUpdateData {
+  email?: string;
+  password?: string;
+}
+
+
 export async function PUT(req: NextRequest) {
   await connectDB();
 
@@ -15,7 +21,8 @@ export async function PUT(req: NextRequest) {
 
     const { email, password } = await req.json();
 
-    const updateData: any = {};
+    const updateData: Partial<UserUpdateData> = {};
+
     if (email) updateData.email = email;
     if (password) updateData.password = await bcrypt.hash(password, 10);
 
@@ -30,7 +37,7 @@ export async function PUT(req: NextRequest) {
 
     return NextResponse.json({ success: true, user: updatedUser });
   } catch (error) {
-    console.error("❌ Error al actualizar usuario:", error);
+    console.error(" Error al actualizar usuario:", error);
     return NextResponse.json({ success: false, message: "Error del servidor" }, { status: 500 });
   }
 }

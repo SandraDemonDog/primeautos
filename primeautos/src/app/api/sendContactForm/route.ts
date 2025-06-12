@@ -2,11 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/utils/mongodb"; 
 import ContactForm from "@/modelo/ContactForm"; 
 
-
-export async function GET(req: NextRequest) {
+export async function GET() {
   await connectDB();
   try {
-   
     const messages = await ContactForm.find().sort({ createdAt: -1 });
     return NextResponse.json({ success: true, data: messages }, { status: 200 });
   } catch (error) {
@@ -20,10 +18,8 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   await connectDB(); 
-
   try {
     const { name, email, message } = await req.json();
-
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -57,9 +53,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }
-) {
+export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
   await connectDB();
   try {
     const deletedMessage = await ContactForm.findByIdAndDelete(params.id);
@@ -81,5 +75,3 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     );
   }
 }
-
-

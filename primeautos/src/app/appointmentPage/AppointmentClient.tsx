@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -11,13 +10,14 @@ import { useTranslations } from "@/hooks/useTranslations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Link from "next/link";
 
-
 const Calendar = dynamic(() => import("react-calendar"), { ssr: false });
 
 interface Appointment {
   date: string; 
   time: string; 
 }
+
+const allTime = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"];
 
 const AppointmentClient: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -30,9 +30,7 @@ const AppointmentClient: React.FC = () => {
   const [timeSelected, setTimeSelected] = useState<string>("");
   const [timeAvailable, setTimeAvailable] = useState<string[]>([]);
   const [message, setMessage] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false); // Spinner de carga
-
-  const allTime = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"];
+  const [loading, setLoading] = useState<boolean>(false);
 
   const t = useTranslations();
   const { locale } = useLanguage(); 
@@ -56,7 +54,6 @@ const AppointmentClient: React.FC = () => {
   ) => {
     e.currentTarget.setCustomValidity("");
   };
-
 
   const appointmentTranslations = {
     sectionTitle: t.appointment.sectionTitle,
@@ -85,7 +82,6 @@ const AppointmentClient: React.FC = () => {
           const dateFormatted = dateSelected.toLocaleDateString("sv-SE");
           const response = await axios.get(`/api/appointments?date=${dateFormatted}`);
           const timeBusy = response.data.data.map((appointment: Appointment) => appointment.time);
-
           setTimeAvailable(allTime.filter((time) => !timeBusy.includes(time)));
         } catch (error) {
           console.error("Error al obtener horas ocupadas:", error);
@@ -106,31 +102,26 @@ const AppointmentClient: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    console.log("Enviando formulario...");
-
     if (!dateSelected || !timeSelected) {
       setMessage(appointmentTranslations.errorNoDateTime);
       return;
     }
-    // Estructura del cuerpo de la solicitud (requestBody)
+
     const requestBody = {
       name: formData.name,
       email: formData.email,
       telephone: formData.telephone,
-      date: dateSelected.toLocaleDateString("sv-SE"), // Convierte a formato YYYY-MM-DD
+      date: dateSelected.toLocaleDateString("sv-SE"),
       time: timeSelected,
       status: "Pendiente",
     };
 
     try {
-      console.log("Cuerpo de la solicitud:", JSON.stringify(requestBody, null, 2));
-    
       const response = await axios.post("/api/appointments", requestBody, {
         headers: {
-          "Content-Type": "application/json", // Especifica que estás enviando JSON
+          "Content-Type": "application/json",
         },
       });
-      console.log("Respuesta de la API:", response.data);
 
       if (response.data.success) {
         setMessage(appointmentTranslations.successMessage);
@@ -140,6 +131,7 @@ const AppointmentClient: React.FC = () => {
         setTimeAvailable([]);
       }
     } catch (error) {
+      console.error(error);
       setMessage(appointmentTranslations.errorSubmit);
     }
   };
@@ -155,138 +147,131 @@ const AppointmentClient: React.FC = () => {
         </div>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Calendario */}
           <div className="flex justify-center items-center p-2 mt-6 space-y-4">
-          <Calendar
-            onChange={(date) => {
-              if (date instanceof Date) {
-                setDateSelected(date);
-              }
-            }}
-            value={dateSelected || new Date()}
-            minDate={new Date()}
-            locale={locale === "en" ? "en-US" : "es-ES"}
-          />
-        </div>
+            <Calendar
+              onChange={(date) => {
+                if (date instanceof Date) {
+                  setDateSelected(date);
+                }
+              }}
+              value={dateSelected || new Date()}
+              minDate={new Date()}
+              locale={locale === "en" ? "en-US" : "es-ES"}
+            />
+          </div>
         
-        {/* Horas disponibles */}
-        <div>
-        {dateSelected && (
-        <div className="mt-4">
-          <h4 className="text-center">
-          {appointmentTranslations.sectionTitle}{" "}
-          {dateSelected.toLocaleDateString(locale, { dateStyle: "long" })}
-          </h4>
-          <div className="d-flex flex-wrap justify-content-center">
-            {loading ? (
-              <div className="spinner-border text-primary" role="status">
-                <span className="visually-hidden">{appointmentTranslations.loadingTime}</span>
+          <div>
+            {dateSelected && (
+              <div className="mt-4">
+                <h4 className="text-center">
+                  {appointmentTranslations.sectionTitle}{" "}
+                  {dateSelected.toLocaleDateString(locale, { dateStyle: "long" })}
+                </h4>
+                <div className="d-flex flex-wrap justify-content-center">
+                  {loading ? (
+                    <div className="spinner-border text-primary" role="status">
+                      <span className="visually-hidden">{appointmentTranslations.loadingTime}</span>
+                    </div>
+                  ) : timeAvailable.length > 0 ? (
+                    timeAvailable.map((time) => (
+                      <Button
+                        key={time}
+                        buttonLabel={time}
+                        buttonType={time === timeSelected ? "dark" : "light"}
+                        onButtonClick={() => setTimeSelected(time)}
+                        className="m-0.5"
+                      />
+                    ))
+                  ) : (
+                    <p className="text-danger">{appointmentTranslations.noAvailableHours}</p>
+                  )}
+                </div>
               </div>
-            ) : timeAvailable.length > 0 ? (
-              timeAvailable.map((time) => (
-                <Button
-                  key={time}
-                  buttonLabel={time}
-                  buttonType={
-                    time === timeSelected ? "dark" : "light"
-                  }
-                  onButtonClick={() => setTimeSelected(time)}
-                  className="m-0.5"
+            )}
+
+            {timeSelected && (
+              <form onSubmit={handleSubmit} className="mt-4 px-3">
+                <Input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  onInvalid={handleInvalid}
+                  onInput={handleInput}
+                  placeholder={appointmentTranslations.namePlaceholder}
+                  label={appointmentTranslations.nameLabel}
+                  required
+                  className="w-full"
                 />
-              ))
-            ) : (
-              <p className="text-danger">{appointmentTranslations.noAvailableHours}</p>
+                <Input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  onInvalid={handleInvalid}
+                  onInput={handleInput}
+                  placeholder={appointmentTranslations.emailPlaceholder}
+                  label={appointmentTranslations.emailLabel}
+                  required
+                  className="w-full"
+                />
+                <Input
+                  type="text"
+                  name="telephone"
+                  value={formData.telephone}
+                  onChange={handleInputChange}
+                  onInvalid={handleInvalid}
+                  onInput={handleInput}
+                  placeholder={appointmentTranslations.telephonePlaceholder}
+                  label={appointmentTranslations.telephoneLabel}
+                  required
+                  className="w-full"
+                />
+                <Button
+                  buttonLabel={appointmentTranslations.submitButton}
+                  buttonType="dark"
+                  buttonHtmlType="submit" 
+                  className="w-full"
+                />
+              </form>
             )}
           </div>
         </div>
-      )}
 
-      {/* Formulario */}
-      {timeSelected && (
-        <form onSubmit={handleSubmit} className="mt-4 px-3">
-          <Input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            onInvalid={handleInvalid}
-            onInput={handleInput}
-            placeholder={appointmentTranslations.namePlaceholder}
-            label={appointmentTranslations.nameLabel}
-            required
-            className="w-full"
-          />
-          <Input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            onInvalid={handleInvalid}
-            onInput={handleInput}
-            placeholder={appointmentTranslations.emailPlaceholder}
-            label={appointmentTranslations.emailLabel}
-            required
-            className="w-full"
-          />
-          <Input
-            type="text"
-            name="telephone"
-            value={formData.telephone}
-            onChange={handleInputChange}
-            onInvalid={handleInvalid}
-            onInput={handleInput}
-            placeholder={appointmentTranslations.telephonePlaceholder}
-            label={appointmentTranslations.telephoneLabel}
-            required
-            className="w-full"
-          />
-          <Button
-            buttonLabel={appointmentTranslations.submitButton}
-            buttonType="dark"
-            buttonHtmlType="submit" 
-            className="w-full"
-          />
-        </form>
-      )}
-      </div>
-      </div>
-      {/* Mensaje de confirmación */}
-      {message && (
+        {message && (
           <div className="bg-yellow-100 text-brown-700 mt-3 text-center p-5 rounded-lg shadow-lg">
             <p className="font-bold text-xl">{message}</p>
 
             <div className="mt-5 flex justify-center space-x-4">
-              {/* Botón para volver al inicio (la ruta "/" es común) */}
               <Link href="/" passHref>
-                  <Button
-                    buttonLabel={
-                      <span className="flex items-center justify-center">
-                        <span className="mr-2">🔙</span> {appointmentTranslations.backToHome}
-                      </span>
-                    }
-                    buttonType="dark"
-                    className="px-6 py-3"
-                  />
+                <Button
+                  buttonLabel={
+                    <span className="flex items-center justify-center">
+                      <span className="mr-2">🔙</span> {appointmentTranslations.backToHome}
+                    </span>
+                  }
+                  buttonType="dark"
+                  className="px-6 py-3"
+                />
               </Link>
-              {/* Botón para explorar servicios: redirige a "/services" si está en inglés, a "/servicios" si en español */}
+
               <Link href="/service" passHref>
-                  <Button
-                    buttonLabel={
-                      <span className="flex items-center justify-center">
-                        <span className="mr-2">🔍</span> {appointmentTranslations.exploreServices}
-                      </span>
-                    }
-                    buttonType="light"
-                    className="px-6 py-3"
-                  />
+                <Button
+                  buttonLabel={
+                    <span className="flex items-center justify-center">
+                      <span className="mr-2">🔍</span> {appointmentTranslations.exploreServices}
+                    </span>
+                  }
+                  buttonType="light"
+                  className="px-6 py-3"
+                />
               </Link>
             </div>
+          </div>
+        )}
       </div>
-    )}
-  </div>
-  </section>   
+    </section>   
   );
 };
 
 export default AppointmentClient;
-

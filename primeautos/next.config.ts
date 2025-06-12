@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     defaultLocale: "es",   // Idioma por defecto
   },*/
   output: "export",
+  images: {
+    unoptimized: true, //  Desactiva la optimización de imágenes para que funcione con 'next export'
+  },
 };
 
 export default nextConfig;

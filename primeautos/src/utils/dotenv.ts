@@ -1,8 +1,6 @@
+import dotenv from "dotenv";
 
+dotenv.config();
 
-require("dotenv").config();
-
-module.exports = {
-  emailUser: process.env.EMAIL_USER,
-  emailPass: process.env.EMAIL_PASS,
-};
+export const emailUser = process.env.EMAIL_USER;
+export const emailPass = process.env.EMAIL_PASS;

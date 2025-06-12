@@ -36,35 +36,35 @@ export default function ProfilePage() {
   const { user, logout, getAccessToken, loading: authLoading } = useAuth();
 
   useEffect(() => {
-    if (authLoading || !user) return;
+  if (authLoading || !user) return;
 
-    setEmail(user.email);
+  setEmail(user.email);
 
-    const fetchAppointments = async () => {
-      try {
-        const token = await getAccessToken();
-        const response = await axios.get("/api/appointmentsUser", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        });
+  const fetchAppointments = async () => {
+    try {
+      const token = await getAccessToken();
+      const response = await axios.get("/api/appointmentsUser", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
 
-        if (response.data.success) {
-          setAppointments(response.data.appointments || response.data.data);
-        } else {
-          setError("No se pudieron obtener las citas");
-        }
-      } catch (err) {
-        console.error("Error al obtener citas:", err);
-        setError("Error interno al obtener las citas");
-      } finally {
-        setLoading(false);
+      if (response.data.success) {
+        setAppointments(response.data.appointments || response.data.data);
+      } else {
+        setError("No se pudieron obtener las citas");
       }
-    };
+    } catch (err) {
+      console.error("Error al obtener citas:", err);
+      setError("Error interno al obtener las citas");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchAppointments();
-  }, [authLoading, user]);
+  fetchAppointments();
+}, [authLoading, user, getAccessToken]); 
 
   const handleLogout = async () => {
     try {
@@ -88,13 +88,13 @@ export default function ProfilePage() {
       });
 
       if (res.data.success) {
-        alert("✅ Datos actualizados correctamente.");
+        alert(" Datos actualizados correctamente.");
       } else {
-        alert("⚠️ No se pudo actualizar.");
+        alert(" No se pudo actualizar.");
       }
     } catch (err) {
-      console.error("❌ Error al actualizar:", err);
-      alert("❌ Error al actualizar.");
+      console.error(" Error al actualizar:", err);
+      alert(" Error al actualizar.");
     }
   };
 
@@ -109,14 +109,14 @@ export default function ProfilePage() {
       });
 
       if (res.data.success) {
-        alert("🗑️ Cuenta eliminada correctamente.");
+        alert(" Cuenta eliminada correctamente.");
         router.push("/login");
       } else {
-        alert("⚠️ No se pudo eliminar la cuenta.");
+        alert(" No se pudo eliminar la cuenta.");
       }
     } catch (err) {
-      console.error("❌ Error al eliminar cuenta:", err);
-      alert("❌ Error al eliminar cuenta.");
+      console.error(" Error al eliminar cuenta:", err);
+      alert(" Error al eliminar cuenta.");
     }
   };
 
@@ -132,13 +132,13 @@ export default function ProfilePage() {
 
       if (res.data.success) {
         setAppointments((prev) => prev.filter((a) => a._id !== appointmentId));
-        alert("🗑️ Cita eliminada correctamente.");
+        alert(" Cita eliminada correctamente.");
       } else {
-        alert("⚠️ No se pudo eliminar la cita.");
+        alert(" No se pudo eliminar la cita.");
       }
     } catch (err) {
-      console.error("❌ Error al eliminar cita:", err);
-      alert("❌ Error al eliminar cita.");
+      console.error(" Error al eliminar cita:", err);
+      alert(" Error al eliminar cita.");
     }
   };
 

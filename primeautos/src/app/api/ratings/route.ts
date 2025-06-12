@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { serviceId, rating, comment } = body; 
+    const { serviceId, rating } = body; // Eliminé comment aquí
 
     if (!serviceId || typeof rating !== "number") {
       return NextResponse.json(
@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-
 
     if (rating < 1 || rating > 5) {
       return NextResponse.json(
@@ -62,4 +61,3 @@ export async function POST(req: NextRequest) {
 export async function OPTIONS() {
   return NextResponse.json({}, { status: 200, headers: { Allow: "POST" } });
 }
-

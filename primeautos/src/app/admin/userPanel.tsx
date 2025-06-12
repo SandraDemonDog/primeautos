@@ -12,21 +12,28 @@ interface User {
   password?: string;
 }
 
+interface RawUser {
+  id?: string;
+  _id?: string;
+  name?: string;
+  email?: string;
+  role?: "admin" | "usuario";
+}
+
 export default function UsersPanel() {
   const [users, setUsers] = useState<User[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
   const [showForm, setShowForm] = useState(false);
-
 
   const fetchUsers = async () => {
     try {
       const res = await axios.get("/api/users");
 
       if (Array.isArray(res.data.data)) {
-        const mappedUsers = res.data.data.map((user: any) => ({
+        const mappedUsers = res.data.data.map((user: RawUser) => ({
           id: user.id ?? user._id ?? "", // fallback
           name: user.name ?? "Sin nombre",
           email: user.email ?? "Sin email",
@@ -47,7 +54,6 @@ export default function UsersPanel() {
     fetchUsers();
   }, []);
 
-
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -65,7 +71,7 @@ export default function UsersPanel() {
     }
   };
 
-    const handleEdit = (user: User) => {
+  const handleEdit = (user: User) => {
     setSelectedUser(user);
     setShowForm(true);
   };
@@ -77,10 +83,8 @@ export default function UsersPanel() {
 
   const handleSuccess = () => {
     setShowForm(false);
-
   };
 
- 
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
@@ -101,8 +105,16 @@ export default function UsersPanel() {
         <UserForm user={selectedUser} onSuccess={handleSuccess} />
       )}
 
+      <input
+        type="text"
+        placeholder="Buscar usuarios"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="border p-2 rounded w-full mb-4"
+      />
+
       <ul className="space-y-2 mt-4">
-        {currentUsers.map((user, index) => (
+        {currentUsers.map((user) => (
           <li key={user.id} className="border p-4 rounded shadow flex justify-between items-center">
             <div>
               <p className="font-semibold">{user.name}</p>
@@ -158,7 +170,6 @@ export default function UsersPanel() {
           </button>
         </div>
       )}
-
     </div>
   );
 }

@@ -47,9 +47,13 @@ export default function ResetPasswordPage() {
       } else {
         setError(response.data.message || "Error al restablecer la contraseña");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+      console.error("Axios error:", err.response?.data || err.message);
+      } else {
+        console.error("Unexpected error:", err);
+      }
       setError("Error interno del servidor");
-      console.error(err);
     } finally {
       setLoading(false);
     }

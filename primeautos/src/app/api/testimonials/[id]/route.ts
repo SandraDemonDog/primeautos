@@ -30,6 +30,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
     return NextResponse.json({ data: result, message: "Testimonio actualizado correctamente." }, { status: 200 });
   } catch (error) {
+    console.error("Error al actualizar testimonio:", error);
     return NextResponse.json({ message: "Error al actualizar el testimonio." }, { status: 500 });
   }
 }
@@ -38,9 +39,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 export async function DELETE(req: Request) {
   await connectDB();
 
-  // ✅ Extraer ID correctamente desde la URL
   const url = new URL(req.url);
-  const id = url.pathname.split("/").pop(); // Obtiene el último segmento de la URL
+  const id = url.pathname.split("/").pop(); 
 
   if (!id) {
     return NextResponse.json({ message: "ID no proporcionado" }, { status: 400 });

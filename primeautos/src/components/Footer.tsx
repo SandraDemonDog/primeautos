@@ -1,7 +1,7 @@
-
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslations } from "@/hooks/useTranslations";
 
 function Footer() {
@@ -15,10 +15,12 @@ function Footer() {
         {/* Logo y Nombre */}
         <div className="flex flex-wrap justify-center md:justify-between items-center gap-6">
           <div className="flex items-center gap-4">
-            <img
+            <Image
               src="/logoTaller.png"
               alt="Prime Autos Logo"
-              className="w-12 h-12 rounded-full object-cover"
+              width={48}
+              height={48}
+              className="rounded-full object-cover"
             />
             <span className="text-2xl font-bold text-yellow-500">Prime Autos</span>
           </div>
@@ -72,7 +74,6 @@ function Footer() {
             </ul>
           </div>
         </div>
-
       </div>
     </footer>
   );

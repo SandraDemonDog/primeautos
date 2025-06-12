@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, ReactNode, useEffect, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import { useRouter } from "next/navigation";
 
 export interface IUser {
@@ -26,7 +32,7 @@ interface AuthProviderProps {
 
 const decodeJwt = (token: string): IUser | null => {
   if (!token || typeof token !== "string") {
-    console.warn("⚠️ Token no válido o undefined.");
+    console.warn(" Token no válido o undefined.");
     return null;
   }
 
@@ -41,10 +47,10 @@ const decodeJwt = (token: string): IUser | null => {
     );
     const payload = JSON.parse(jsonPayload);
 
-    console.log("✅ Payload decodificado:", payload);
+    console.log(" Payload decodificado:", payload);
     return payload.userId && payload.email && payload.role ? payload : null;
   } catch (err) {
-    console.error("❌ Error al decodificar el token:", err);
+    console.error(" Error al decodificar el token:", err);
     return null;
   }
 };
@@ -55,73 +61,73 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  const refreshAccessToken = async (): Promise<string | null> => {
+  const logout = useCallback(async (): Promise<void> => {
+    console.log("🚪 Cerrando sesión...");
     try {
-      console.log("🔄 Intentando refrescar el token...");
+      await fetch("/api/logout", { method: "POST" }); 
+    } catch (err) {
+      console.error(" Error al llamar a /api/logout", err);
+    }
+    setAccessToken(null);
+    setUser(null);
+    router.refresh(); 
+  }, [router]);
+
+  const refreshAccessToken = useCallback(async (): Promise<string | null> => {
+    try {
+      console.log(" Intentando refrescar el token...");
       const response = await fetch("/api/refreshToken", {
         method: "GET",
         credentials: "include",
       });
 
       const data = await response.json();
-      console.log("📦 Respuesta de refreshToken:", data);
+      console.log(" Respuesta de refreshToken:", data);
 
       if (data.success && data.accessToken) {
         const decoded = decodeJwt(data.accessToken);
 
         if (!decoded) {
-          throw new Error("❌ Error al decodificar el accessToken recibido.");
+          throw new Error(" Error al decodificar el accessToken recibido.");
         }
 
         setAccessToken(data.accessToken);
         setUser(decoded);
         return data.accessToken;
       } else {
-        console.warn("⚠️ No se pudo refrescar el token o el token es inválido.");
+        console.warn(" No se pudo refrescar el token o el token es inválido.");
         await logout();
         return null;
       }
     } catch (error) {
-      console.error("❌ Error al refrescar el token:", error);
+      console.error(" Error al refrescar el token:", error);
       await logout();
       return null;
     }
-  };
+  }, [logout]);
 
   const getAccessToken = async (): Promise<string | null> => {
     if (!accessToken) {
-      console.log("🔍 No hay token en memoria, refrescando...");
+      console.log(" No hay token en memoria, refrescando...");
       return await refreshAccessToken();
     }
     return accessToken;
   };
 
   const login = (token: string): void => {
-    console.log("🔐 Inicio de sesión con token:", token);
+    console.log(" Inicio de sesión con token:", token);
     const decoded = decodeJwt(token);
     if (!decoded) {
-      console.error("❌ Token inválido durante login.");
+      console.error(" Token inválido durante login.");
       return;
     }
     setAccessToken(token);
     setUser(decoded);
   };
 
-  const logout = async (): Promise<void> => {
-    console.log("🚪 Cerrando sesión...");
-    try {
-      await fetch("/api/logout", { method: "POST" }); // ✅ Elimina refreshToken del servidor
-    } catch (err) {
-      console.error("❌ Error al llamar a /api/logout", err);
-    }
-    setAccessToken(null);
-    setUser(null);
-    router.refresh(); // ✅ Forzar actualización de UI
-  };
-
   useEffect(() => {
     refreshAccessToken().finally(() => setLoading(false));
-  }, []);
+  }, [refreshAccessToken]);
 
   return (
     <AuthContext.Provider

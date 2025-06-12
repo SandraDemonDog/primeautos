@@ -10,10 +10,10 @@ export interface DecodedUser {
 
 export function getUserFromToken(req: NextRequest): DecodedUser | null {
   try {
-    const cookie = req.cookies.get("refreshToken"); // <- CORRECTO
+    const cookie = req.cookies.get("refreshToken"); 
 
     if (!cookie || !cookie.value) {
-      console.warn("⚠️ Token no encontrado en cookies.");
+      console.warn(" Token no encontrado en cookies.");
       return null;
     }
 
@@ -21,14 +21,14 @@ export function getUserFromToken(req: NextRequest): DecodedUser | null {
 
     const secret = process.env.JWT_SECRET;
     if (!secret) {
-      console.error("❌ JWT_SECRET no está definido.");
+      console.error(" JWT_SECRET no está definido.");
       return null;
     }
 
     const decoded = jwt.verify(token, secret) as jwt.JwtPayload;
 
     if (!decoded || typeof decoded !== "object") {
-      console.error("❌ Token decodificado no válido.");
+      console.error(" Token decodificado no válido.");
       return null;
     }
 
@@ -38,7 +38,7 @@ export function getUserFromToken(req: NextRequest): DecodedUser | null {
       role: decoded.role,
     };
   } catch (err) {
-    console.error("❌ Error al verificar el token:", err);
+    console.error(" Error al verificar el token:", err);
     return null;
   }
 }

@@ -1,6 +1,7 @@
 /*@import "tailwindcss/preflight"; /* Reinicio de estilos base */
 /*@import "tailwindcss/utilities"; /* Utilidades de Tailwind CSS */
- 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap'); 
+
 @import "tailwindcss";
 
 /* Variables CSS para temas claros y oscuros */
